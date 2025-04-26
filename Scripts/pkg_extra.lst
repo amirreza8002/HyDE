@@ -62,3 +62,7 @@ swayosd-git                                             #A GTK based on screen d
 # --------------------------------------------------- // Alternative Bar
 # wayle-bin                                             # Wayland desktop shell (bar, OSD, notifications, wallpaper)
 # matugen-bin|wayle-bin                                 # Material You color generation for dynamic theming
+
+# --------------------------------------------------- // social
+discord
+telegram-desktop
