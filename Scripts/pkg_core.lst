@@ -63,11 +63,13 @@ qt6-wayland                                            # wayland support in qt6
 
 # --------------------------------------------------- // Applications
 firefox                                                # browser
+google-chrome                                          # browser
 kitty                                                  # terminal
 nautilus                                               # file manager
 nautilus-admin-gtk4                                    # open as root
 nautilus-image-converter                               # image converter
 nautilus-hide
+nautilus-open-any-terminal                             # open terminals
 unzip                                                  # extracting zip files
 vim                                                    # terminal text editor
 nwg-displays                                           # monitor management utility
@@ -81,6 +83,13 @@ starship|zsh                                           # customizable shell prom
 eza|fish                                               # file lister for fish
 starship|fish                                          # customizable shell prompt
 fastfetch                                              # system information fetch tool
+bat
+less
 
 # --------------------------------------------------- // HyDE
 hypridle                                               # idle daemon
+hyde-cli-git                                           # hyde cli (for extra themes)
+
+
+# --------------------------------------------------- // font
+vazirmatn-fonts
