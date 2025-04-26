@@ -46,3 +46,8 @@ neovim                                               # vim based text editor
 
 # --------------------------------------------------- // OSD
 swayosd-git                                             #A GTK based on screen display for keyboard shortcuts like caps-lock and volume
+
+
+# --------------------------------------------------- // social
+discord
+telegram-desktop
