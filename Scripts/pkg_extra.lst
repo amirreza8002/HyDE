@@ -18,9 +18,9 @@ wf-recorder                                          # Screen recorder for wlroo
 # wl-screenrec                                         # High performance hardware accelerated wlroots screen recorder // NO support for NVIDIA
 
 # --------------------------------------------------- // Gaming
-steam                                                  # gaming platform
-gamemode                                               # daemon and library for game optimizations
-mangohud                                               # system performance overlay
+# steam                                                  # gaming platform
+# gamemode                                               # daemon and library for game optimizations
+# mangohud                                               # system performance overlay
 # gamescope                                            # micro-compositor for gaming
 # lutris                                               # Lutris is an open source gaming platform for Linux
 
@@ -30,7 +30,7 @@ spotify                                                # proprietary music strea
 spicetify-cli                                          # cli to customize spotify client
 
 # --------------------------------------------------- // Apps
-# neovim                                               # vim based text editor
+neovim                                               # vim based text editor
 
 # --------------------------------------------------- // Shell
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
@@ -38,13 +38,8 @@ spicetify-cli                                          # cli to customize spotif
 # pokego-bin|zsh                                         # display pokemon sprites in terminal (written GO)
 
 # --------------------------------------------------- // Editor
-# vscodium                                              # Full oss text editor
-# vscodium-marketplace|vscodium                         # VSCodium marketplace
-# code-marketplace|code                                 # Code-Oss marketplace
-# visual-studio-code-bin                                # MS  text editor
 
 # --------------------------------------------------- // Backends
-#electron                                              # electron backend
 
 # --------------------------------------------------- // Lockscreen
 #swaylock-effects-git                                   # swaylock with effects // very minimal lockscreen
