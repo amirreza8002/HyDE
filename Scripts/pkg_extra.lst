@@ -24,6 +24,9 @@ wf-recorder                                          # Screen recorder for wlroo
 # gamescope                                            # micro-compositor for gaming
 # lutris                                               # Lutris is an open source gaming platform for Linux
 
+# --------------------------------------------------- // Media
+vlc
+
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
 spotify                                                # proprietary music streaming service
@@ -31,6 +34,11 @@ spicetify-cli                                          # cli to customize spotif
 
 # --------------------------------------------------- // Apps
 neovim                                               # vim based text editor
+tree-sitter-cli
+lazygit
+ripgrep
+bottom
+gdu
 
 # --------------------------------------------------- // Shell
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
@@ -51,3 +59,21 @@ swayosd-git                                             #A GTK based on screen d
 # --------------------------------------------------- // social
 discord
 telegram-desktop
+
+
+
+# --------------------------------------------------- // dev
+clang
+gcc
+pyenv
+nvm
+
+
+
+# --------------------------------------------------- // python
+base-devel
+openssl
+zlib
+xz
+tk
+uv
