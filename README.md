@@ -95,6 +95,16 @@ cd ~/HyDE/Scripts
 > Refer your list from `Scripts/pkg_extra.lst`
 > or you can `cp  Scripts/pkg_extra.lst Scripts/pkg_user.lst` if you wish to install all extra packages.
 
+then run:
+```shell
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+( cd $ZSH_CUSTOM/plugins && git clone https://github.com/chrissicool/zsh-256color )
+```
+
+for zsh tools
+
 <!--
 
 As a second install option, you can also use `Hyde-install`, which might be easier for some.
