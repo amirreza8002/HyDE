@@ -29,6 +29,7 @@ vlc
 
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
+rmpc
 spotify                                                # proprietary music streaming service
 spicetify-cli                                          # cli to customize spotify client
 
@@ -39,6 +40,8 @@ lazygit
 ripgrep
 bottom
 gdu
+
+kate
 
 # --------------------------------------------------- // Shell
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
