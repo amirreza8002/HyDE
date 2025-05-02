@@ -29,6 +29,10 @@ kimageformats                                          # plugin for heif/heic an
 
 # --------------------------------------------------- // Media
 vlc
+geeqie
+
+# --------------------------------------------------- // reader
+okular
 
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
@@ -46,6 +50,7 @@ gdu
 
 kate
 
+gnome-characters                                     # emojies
 # --------------------------------------------------- // Shell
 # --------------------------------------------------- // zsh
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
@@ -85,6 +90,7 @@ clang
 gcc
 pyenv
 nvm
+gitui
 
 
 
