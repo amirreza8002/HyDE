@@ -64,7 +64,10 @@ qt6-wayland                                            # wayland support in qt6
 # --------------------------------------------------- // Applications
 firefox                                                # browser
 google-chrome                                          # browser
+brave-bin                                              # browser
 kitty                                                  # terminal
+alacritty                                              # terminal
+tmux
 nautilus                                               # file manager
 nautilus-admin-gtk4                                    # open as root
 nautilus-image-converter                               # image converter
