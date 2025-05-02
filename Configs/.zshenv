@@ -234,13 +234,13 @@ function _load_if_terminal {
             export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
             export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
         # ===== END Initialize Starship prompt =====
-        elif [ -r $HOME/.p10k.zsh ]; then
+        # elif [ -r ~/.p10k.zsh ]; then
             # ===== START Initialize Powerlevel10k theme =====
-            POWERLEVEL10K_TRANSIENT_PROMPT=same-dir
-            P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
-            [[ -r $P10k_THEME ]] && source $P10k_THEME
-            # To customize prompt, run `p10k configure` or edit $HOME/.p10k.zsh
-            [[ ! -f $HOME/.p10k.zsh ]] || source $HOME/.p10k.zsh
+            # POWERLEVEL10K_TRANSIENT_PROMPT=same-dir
+            # P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
+            # [[ -r $P10k_THEME ]] && source $P10k_THEME
+            # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
+            # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
         # ===== END Initialize Powerlevel10k theme =====
         fi
 
@@ -282,7 +282,6 @@ function _load_if_terminal {
             up='${PM_COMMAND[@]} upgrade' \
             pl='${PM_COMMAND[@]} search installed' \
             pa='${PM_COMMAND[@]} search all' \
-            vc='code' \
             fastfetch='fastfetch --logo-type kitty' \
             ..='cd ..' \
             ...='cd ../..' \

@@ -2,9 +2,14 @@
 add_newline = false
 format = """\
   󰣇 \
+  [╭─](green)\
+  [$username](green)\
+  [@](cyan)\
+  [$hostname](green) \
   $directory\
-  $git_branch$git_commit$git_state $git_status\
-  $character\n
+  $git_branch \
+  $python\
+  \n  [╰-➤ ](green)\n\n\n
 """
 right_format = """
 $singularity\
@@ -40,7 +45,6 @@ $opa\
 $perl\
 $pulumi\
 $purescript\
-$python\
 $raku\
 $rlang\
 $red\
@@ -136,10 +140,10 @@ format = "[ ](bold bright-green)"
 version_format = "${raw}"
 
 [python]
-format = "[${symbol}(${virtualenv}) ${version}]($style)"
-style = "bold bright-yellow"
-symbol = "[ ](bold bright-blue)"
-version_format = "${raw}"
+  format         = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+  style          = "bold bright-yellow"
+  symbol         = "[🐍](bold bright-blue)"
+  version_format = "${raw}"
 
 [ruby]
 format = " [rb](italic) [${symbol}]($style)"
