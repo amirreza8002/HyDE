@@ -59,8 +59,8 @@ function load_zsh_plugins {
     )
     for zsh_path in "${zsh_paths[@]}"; do [[ -d $zsh_path ]] && export ZSH=$zsh_path && break; done
     # Load Plugins
-    hyde_plugins=(git zsh-256color zsh-autosuggestions zsh-syntax-highlighting)
-    plugins+=("${plugins[@]}" "${hyde_plugins[@]}" git zsh-256color zsh-autosuggestions zsh-syntax-highlighting)
+    hyde_plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+    plugins+=("${plugins[@]}" "${hyde_plugins[@]}")
     # Deduplicate plugins
     plugins=("${plugins[@]}")
     plugins=($(printf "%s\n" "${plugins[@]}" | sort -u))
@@ -153,18 +153,18 @@ if [ -t 1 ]; then
     # You can remove either starship or p10k to slightly improve start time
 
     if command -v starship &>/dev/null; then
-        # ===== START Initialize Starship prompt =====
+    #     # ===== START Initialize Starship prompt =====
         eval "$(starship init zsh)"
         export STARSHIP_CACHE=$XDG_CACHE_HOME/starship
         export STARSHIP_CONFIG=$XDG_CONFIG_HOME/starship/starship.toml
         # starship.toml can be swapped with : brackets.toml  heavy-right.toml  lualine.toml  powerline.toml
     # ===== END Initialize Starship prompt =====
-    elif [ -f ~/.p10k.zsh ]; then
+    # elif [ -f ~/.p10k.zsh ]; then
         # ===== START Initialize Powerlevel10k theme =====
-        P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
-        [[ -r $P10k_THEME ]] && source $P10k_THEME
+        # P10k_THEME=${P10k_THEME:-/usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme}
+        # [[ -r $P10k_THEME ]] && source $P10k_THEME
         # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh
-        [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+        # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
     # ===== END Initialize Powerlevel10k theme =====
     fi
 
@@ -198,7 +198,6 @@ if [ -t 1 ]; then
         up='$PM upgrade' \
         pl='$PM search installed' \
         pa='$PM search all' \
-        vc='code' \
         fastfetch='fastfetch --logo-type kitty' \
         ..='cd ..' \
         ...='cd ../..' \

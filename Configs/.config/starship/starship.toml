@@ -1,10 +1,16 @@
 # "$schema" = 'https://starship.rs/config-schema.json'
+# format = '$all'
 add_newline = false
 format = """\
   󰣇 \
+  [╭─](green)\
+  [$username](green)\ 
+  [@](cyan)\ 
+  [$hostname](green) \
   $directory\
-  $git_branch$git_commit$git_state $git_status\
-  $character\n\n\n
+  $git_branch \
+  $python\
+  \n  [╰-➤ ](green)\n\n\n
 """
 right_format = """
 $singularity\
@@ -42,7 +48,6 @@ $perl\
 $php\
 $pulumi\
 $purescript\
-$python\
 $raku\
 $rlang\
 $red\
@@ -68,6 +73,7 @@ $crystal\
 $custom\
 $status\
 $os\
+$battery\
 $time"""
 
 continuation_prompt = '▶▶ '
@@ -87,148 +93,171 @@ continuation_prompt = '▶▶ '
 # <color>
 # none
 
-#NTOE: you can customize the symbol(s, e.g:
+# $crystal$golang$java$nodejs$php$python$rust\
 # [character]
 # success_symbol = "[  ]($bold fg:#f8f8f2)"
 # error_symbol = "[ ➤ ]($bold fg:#fb4934)"
 
 [directory]
-disabled = false
-format = "[$path](bold fg:#8be9fd)"
-truncate_to_repo = false
-# home_symbol = "" 
+  disabled         = false
+  format           = "[$path](bold fg:#8be9fd)"
+  truncate_to_repo = false
+  # home_symbol = "" #https://github.com/starship/starship/pull/2198/files
 
 [git_branch]
-format = " [  $branch](fg:#9198a1)"
+  format = " [  $branch](fg:#9198a1)"
 
 [git_status]
-ahead = '⇡${count}'
-behind = '⇣${count}'
-diverged = '⇕⇡${ahead_count}⇣${behind_count}'
-format = '[[( $all_status$ahead_behind )](fg:#769ff0)]($style)'
-style = "bg:#394260"
+  ahead    = '⇡${count}'
+  behind   = '⇣${count}'
+  diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+  format   = ' [[ ($all_status$ahead_behind )](fg:#769ff0)]($style)'
+  style    = "bg:#394260"
+
+  # [git_branch]
+  # symbol = ""
+  # style = "bg:#394260"
+  # format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+  #
+  # [git_status]
+  # style = "bg:#394260"
+  # format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+  # ahead = '⇡${count}'
+  # diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+  # behind = '⇣${count}'
 
 
 [time]
-disabled = false
-format = '[[  $time ](fg:#a0a9cb )]($style)'
-time_format = "%R"                            # Hour:Minute Format
+  disabled    = false
+  format      = '[[  $time ](fg:#a0a9cb )]($style)'
+  time_format = "%R"                                 # Hour:Minute Format
 
 [deno]
-format = " [deno](italic) [∫ $version](green bold)"
-version_format = "${raw}"
+  format         = " [deno](italic) [∫ $version](green bold)"
+  version_format = "${raw}"
 
 [lua]
-format = " [lua](italic) [${symbol}${version}]($style)"
-style = "bold bright-yellow"
-symbol = "⨀ "
-version_format = "${raw}"
+  format         = " [lua](italic) [${symbol}${version}]($style)"
+  style          = "bold bright-yellow"
+  symbol         = "⨀ "
+  version_format = "${raw}"
 
 [nodejs]
-detect_extensions = []
-detect_files = ["package-lock.json", "yarn.lock"]
-detect_folders = ["node_modules"]
-format = " [node](italic) [◫ ](bold bright-green)"
-version_format = "${raw}"
+  detect_extensions = [  ]
+  detect_files      = [ "package-lock.json", "yarn.lock" ]
+  detect_folders    = [ "node_modules" ]
+  format            = " [node](italic) [◫ ](bold bright-green)"
+  version_format    = "${raw}"
 
 [python]
-format = " [py](italic) [${symbol}${version}]($style)"
-style = "bold bright-yellow"
-symbol = "[⌉](bold bright-blue)⌊ "
-version_format = "${raw}"
+  format         = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+  style          = "bold bright-yellow"
+  symbol         = "[🐍](bold bright-blue)"
+  version_format = "${raw}"
 
 [ruby]
-format = " [rb](italic) [${symbol}${version}]($style)"
-style = "bold red"
-symbol = "◆ "
-version_format = "${raw}"
+  format         = " [rb](italic) [${symbol}${version}]($style)"
+  style          = "bold red"
+  symbol         = "◆ "
+  version_format = "${raw}"
 
 [rust]
-format = " rs $symbol"
-symbol = " "
+  format = " rs $symbol"
+  symbol = " "
+
+  # [package]
+  # format = " [pkg](italic dimmed) [$symbol$version]($style)"
+  # version_format = "${raw}"
+  # symbol = "◨ "
+  # style = "dimmed yellow italic bold"
 
 [swift]
-format = " [sw](italic) [${symbol}${version}]($style)"
-style = "bold bright-red"
-symbol = "◁ "
-version_format = "${raw}"
+  format         = " [sw](italic) [${symbol}${version}]($style)"
+  style          = "bold bright-red"
+  symbol         = "◁ "
+  version_format = "${raw}"
 
 [aws]
-disabled = true
-format = " [aws](italic) [$symbol $profile $region]($style)"
-style = "bold blue"
-symbol = "▲ "
+  disabled = true
+  format   = " [aws](italic) [$symbol $profile $region]($style)"
+  style    = "bold blue"
+  symbol   = "▲ "
 
 [buf]
-format = " [buf](italic) [$symbol $version $buf_version]($style)"
-symbol = "■ "
+  format = " [buf](italic) [$symbol $version $buf_version]($style)"
+  symbol = "■ "
 
 [c]
-format = " [$symbol($version(-$name))]($style)"
-symbol = "ℂ "
+  format = " [$symbol($version(-$name))]($style)"
+  symbol = "ℂ "
 
 [conda]
-format = " conda [$symbol$environment]($style)"
-symbol = "◯ "
+  format = " conda [$symbol$environment]($style)"
+  symbol = "◯ "
 
 [dart]
-format = " dart [$symbol($version )]($style)"
-symbol = "◁◅ "
+  format = " dart [$symbol($version )]($style)"
+  symbol = "◁◅ "
 
 [docker_context]
-format = " docker [$symbol$context]($style)"
-symbol = "◧ "
+  format = " docker [$symbol$context]($style)"
+  symbol = "◧ "
 
 [elixir]
-format = " exs [$symbol $version OTP $otp_version ]($style)"
-symbol = "△ "
+  format = " exs [$symbol $version OTP $otp_version ]($style)"
+  symbol = "△ "
 
 [elm]
-format = " elm [$symbol($version )]($style)"
-symbol = "◩ "
+  format = " elm [$symbol($version )]($style)"
+  symbol = "◩ "
 
 [golang]
-format = " go [$symbol($version )]($style)"
-symbol = "∩ "
+  format = " go [$symbol($version )]($style)"
+  symbol = "∩ "
 
 [haskell]
-format = " hs [$symbol($version )]($style)"
-symbol = "❯λ "
+  format = " hs [$symbol($version )]($style)"
+  symbol = "❯λ "
 
 [java]
-format = " java [${symbol}(${version} )]($style)"
-symbol = "∪ "
+  format = " java [${symbol}(${version} )]($style)"
+  symbol = "∪ "
 
 [julia]
-format = " jl [$symbol($version )]($style)"
-symbol = "◎ "
+  format = " jl [$symbol($version )]($style)"
+  symbol = "◎ "
 
 [memory_usage]
-format = " mem [${ram}( ${swap})]($style)"
-symbol = "▪▫▪ "
+  format = " mem [${ram}( ${swap})]($style)"
+  symbol = "▪▫▪ "
 
 [nim]
-format = " nim [$symbol($version )]($style)"
-symbol = "▴▲▴ "
+  format = " nim [$symbol($version )]($style)"
+  symbol = "▴▲▴ "
 
 [nix_shell]
-format = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
-impure_msg = '[⌽](bold dimmed red)'
-pure_msg = '[⌾](bold dimmed green)'
-style = 'bold italic dimmed blue'
-symbol = '✶'
-unknown_msg = '[◌](bold dimmed ellow)'
+  format      = '[$symbol nix⎪$state⎪]($style) [$name](italic dimmed white)'
+  impure_msg  = '[⌽](bold dimmed red)'
+  pure_msg    = '[⌾](bold dimmed green)'
+  style       = 'bold italic dimmed blue'
+  symbol      = '✶'
+  unknown_msg = '[◌](bold dimmed ellow)'
 
 [spack]
-format = " spack [$symbol$environment]($style)"
-symbol = "◇ "
+  format = " spack [$symbol$environment]($style)"
+  symbol = "◇ "
 
 
-[zig]
-format = " zig [$symbol]($style)"
-symbol = " "
+[username]
+style_user = "green"
+style_root = "blue"
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "green"
+format = '[$hostname]($style)'
 
 
-[scala]
-format = " scala [$symbol]($style)"
-symbol = " "
