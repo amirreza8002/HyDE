@@ -1,0 +1,42 @@
+[window]
+padding= { x = 25 }
+opacity = 0.60
+
+[font]
+normal = { family= "CaskaydiaCove Nerd Font Mono", style = "Regular" }
+size = 9.0
+
+[colors]
+selection = { text = "#0A1010", background = "#FFFFFF" }
+cursor = { text = "#000000", cursor = "#56A0D3" }
+
+[colors.primary]
+foreground = "#FFFFFF"
+background = "#1A1D23"
+
+
+[colors.normal]
+black = "#1A1A1A"
+red = "#FF007F"
+green = "#00FF80"
+yellow = "#56A0D3"
+blue = "#0080C6"
+magenta = "#A981FC"
+cyan = "#00FFE6"
+white = "#F0F0F0"
+
+
+[colors.dim]
+black = "#555555"
+red = "#FF00FF"
+green = "#00FFBF"
+yellow = "#56A0D3"
+blue = "#0099FF"
+magenta = "#CC00FF"
+cyan = "#00FFCC"
+white = "#FFFFFF"
+
+[cursor]
+style = { blinking = "On"}
+blink_timeout = 15
+
