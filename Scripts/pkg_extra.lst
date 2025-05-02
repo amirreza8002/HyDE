@@ -26,6 +26,10 @@ wf-recorder                                          # Screen recorder for wlroo
 
 # --------------------------------------------------- // Media
 vlc
+geeqie
+
+# --------------------------------------------------- // reader
+okular
 
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
@@ -43,6 +47,7 @@ gdu
 
 kate
 
+gnome-characters                                     # emojies
 # --------------------------------------------------- // Shell
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
 # pokemon-colorscripts-git|zsh                           # display pokemon sprites (optional)
@@ -70,6 +75,7 @@ clang
 gcc
 pyenv
 nvm
+gitui
 
 
 
