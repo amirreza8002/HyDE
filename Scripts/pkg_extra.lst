@@ -91,6 +91,9 @@ gcc
 pyenv
 nvm
 gitui
+docker
+docker-compose
+postgresql
 
 
 
