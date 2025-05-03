@@ -89,3 +89,4 @@ zlib
 xz
 tk
 uv
+python-lsp-server                                       # lsp server for python (installing for kate)
