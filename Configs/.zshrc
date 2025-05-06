@@ -126,3 +126,4 @@ alias gpo="git push origin"
 alias make-venv="python -m venv .venv"
 alias activate="source .venv/bin/activate"
 
+alias man="batman"
