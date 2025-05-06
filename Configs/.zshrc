@@ -130,3 +130,4 @@ alias activate="source .venv/bin/activate"
 # Add your configurations here
 # export EDITOR=nvim
 export EDITOR=nvim
+alias man="batman"
