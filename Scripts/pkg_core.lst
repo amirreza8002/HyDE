@@ -68,6 +68,8 @@ brave-bin                                              # browser
 kitty                                                  # terminal
 alacritty                                              # terminal
 tmux
+bat-extras                                             # extra tools for bat
+
 nautilus                                               # file manager
 nautilus-admin-gtk4                                    # open as root
 nautilus-image-converter                               # image converter
