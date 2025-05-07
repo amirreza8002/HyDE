@@ -140,10 +140,10 @@ format = "[ ](bold bright-green)"
 version_format = "${raw}"
 
 [python]
-  format         = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
-  style          = "bold bright-yellow"
-  symbol         = "[🐍](bold bright-blue)"
-  version_format = "${raw}"
+format         = '[${symbol} ${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)'
+style          = "bold bright-yellow"
+symbol         = "[🐍](bold bright-blue)"
+version_format = "${raw}"
 
 [ruby]
 format = " [rb](italic) [${symbol}]($style)"
@@ -407,3 +407,17 @@ symbol = " "
 format = " [crystal](italic) [$symbol]($style)"
 style = "bold bright-cyan"
 symbol = " "
+
+[username]
+style_user = "green"
+style_root = "blue"
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+style = "green"
+format = '[$hostname]($style)'
+
+
