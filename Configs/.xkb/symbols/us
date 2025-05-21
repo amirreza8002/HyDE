@@ -11,11 +11,11 @@ xkb_symbols "basic" {
     key <AE04>	{[	 parenleft,	 4		]};
     key <AE05>	{[	 equal,	 5	]};
     key <AE06>	{[	 dollar,	 6, dead_circumflex, dead_circumflex	]};
-    key <AE07>	{[	 parenright,	 7	]};
-    key <AE08>	{[	 braceright,	 8	]};
-    key <AE09>	{[	 bracketright,	 9, dead_grave	]};
-    key <AE10>	{[	 asterisk,	 0	]};
-    key <AE11>	{[   exclam,	 percent	]};
+    key <AE07>	{[	 ampersand,	 7	]};
+    key <AE08>	{[	 parenright,	 8	]};
+    key <AE09>	{[	 braceright,	 9, dead_grave	]};
+    key <AE10>	{[	 bracketright,	 0	]};
+    key <AE11>	{[   asterisk,	 percent	]};
     key <AE12>	{[   bar, grave, dead_tilde		]};
 
     key <AD01>	{[	 period,	 greater		]};
@@ -29,7 +29,7 @@ xkb_symbols "basic" {
     key <AD09>	{[	 o,	 O		]};
     key <AD10>	{[	 p,	 P		]};
     key <AD11>	{[ underscore,	 asciicircum	]};
-    key <AD12>	{[ at, ampersand	]};
+    key <AD12>	{[ at, exclam	]};
 
     key <AC01>	{[	 a,	 A		]};
     key <AC02>	{[	 s,	 S		]};
