@@ -70,9 +70,10 @@ ZSH_THEME=""
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=()
+plugins=(direnv)
 
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
+# source $HOME/.zshenv
 
 # User configuration
 
@@ -126,8 +127,6 @@ alias gpo="git push origin"
 alias make-venv="python -m venv .venv"
 alias activate="source .venv/bin/activate"
 
-#  This is your file 
-# Add your configurations here
-# export EDITOR=nvim
-export EDITOR=nvim
 alias man="batman"
+
+
