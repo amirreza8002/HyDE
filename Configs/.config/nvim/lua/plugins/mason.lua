@@ -19,9 +19,11 @@ return {
         "debugpy",
 
         -- install any other package
-        "tree-sitter-cli",
         "python-lsp-server",
-        "ruff-lsp",
+        "ruff",
+        "csharp-language-server",
+        "gopls",
+        -- "tree-sitter-cli",
       },
     },
   },
