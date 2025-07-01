@@ -6,6 +6,8 @@
 #  Plugins 
 # oh-my-zsh plugins are loaded  in $ZDOTDIR/.user.zsh file, see the file for more information
 
+ZSH_THEME=""
+
 #  Aliases 
 # Override aliases here in '$ZDOTDIR/.zshrc' (already set in .zshenv)
 
@@ -41,3 +43,39 @@
 export EDITOR=nvim
 
 # unset -f command_not_found_handler # Uncomment to prevent searching for commands not found in package manager
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init - zsh)"
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# git
+alias ga="git add"
+alias gc="git commit"
+alias gi="git init"
+alias gl="git log"
+alias gs="git status"
+alias gp="git push origin main"
+alias gpd="git push origin main --force"
+alias gpo="git push origin"
+
+# python
+alias make-venv="python -m venv .venv"
+alias activate="source .venv/bin/activate"
+
+# django
+alias dj="python manage.py"
+alias dj-pr="django-admin startproject"
+alias dj-app="python manage.py startapp"
+alias dj-mi="python manage.py migrate"
+alias dj-mm="python manage.py makemigrations"
+alias dj-sh="python manage.py shell"
+alias dj-shp="python manage.py shell_plus"
+
+
+alias man="batman"
