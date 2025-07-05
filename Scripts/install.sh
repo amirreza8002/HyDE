@@ -32,6 +32,14 @@ fi
 #------------------#
 # evaluate options #
 #------------------
+#------------------#
+flg_Install=0
+flg_Restore=0
+flg_Service=0
+flg_DryRun=0
+flg_Shell=0
+flg_Nvidia=0
+flg_ThemeInstall=1
 
 show_help() {
 	cat <<EOF
