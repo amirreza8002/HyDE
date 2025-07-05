@@ -36,8 +36,8 @@
         "modules": [
             "idle_inhibitor",
             "clock",
-            "custom/dunst",
-            "custom/hyprsunset"
+            "custom/hyprsunset",
+            "mpris"
         ],
         "orientation": "inherit"
     },
@@ -48,9 +48,9 @@
     ],
     "group/pill#right1": {
         "modules": [
-            "backlight",
+            // "backlight",
             "tray",
-            "network",
+            "network#bandwidth",
             "pulseaudio",
             "pulseaudio#microphone",
             "custom/updates",
@@ -67,6 +67,7 @@
     },
     "group/pill#right3": {
         "modules": [
+            "custom/hyde-menu",
             "custom/wallchange",
             "custom/theme",
             "custom/wbar",
