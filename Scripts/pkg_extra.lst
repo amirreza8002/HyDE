@@ -61,6 +61,8 @@ gnome-characters                                     # emojies
 bat|zsh                                                  # enhanced version of cat
 eza|zsh                                                  # file lister for zsh
 duf|zsh                                                  # prettier version of df for zsh
+bat-extras                                             # extra tools for bat
+
 # --------------------------------------------------- // fish
 bat|fish                                                 # enhanced version of cat
 eza|fish                                                 # file lister
