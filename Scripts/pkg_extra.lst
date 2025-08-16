@@ -98,7 +98,7 @@ gitui
 docker
 docker-compose
 postgresql
-
+git-filter-repo 
 
 
 # --------------------------------------------------- // python
