@@ -62,6 +62,8 @@ return {
         ["<C-h>"] = { function() require("astrocore.buffer").nav(-vim.v.count1) end, desc = "Previous buffer" },
         ["<C-d>"] = { "<C-d>zz" },
         ["<C-u>"] = { "<C-u>zz" },
+        ["<leader>gws"] = { function() Snacks.picker.worktrees() end, silent = true, desc = "switch git worktree" },
+        ["<leader>gwc"] = { function() Snacks.picker.worktrees_new() end, silent = true, desc = "create git worktree" },
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
