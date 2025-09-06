@@ -1,6 +1,6 @@
 return {
   "folke/snacks.nvim",
-  ---@type snacks.Config
+  ---@type LazySpec
   opts = {
     picker = {
       sources = {
