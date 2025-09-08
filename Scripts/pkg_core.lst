@@ -69,6 +69,7 @@ qt6-wayland                                            # wayland support in qt6
 firefox                                                # browser
 # google-chrome                                          # browser
 zen-browser                                            # browser
+qutebrowser
 kitty                                                  # terminal
 alacritty                                              # terminal
 tmux
