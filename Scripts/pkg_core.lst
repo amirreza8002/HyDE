@@ -67,8 +67,6 @@ qt6-wayland                                            # wayland support in qt6
 
 # --------------------------------------------------- // Applications
 firefox                                                # browser
-# google-chrome                                          # browser
-zen-browser                                            # browser
 qutebrowser
 kitty                                                  # terminal
 alacritty                                              # terminal
