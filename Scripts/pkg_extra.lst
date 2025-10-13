@@ -9,8 +9,14 @@ ddcui                                                  # GUI to control brightne
 # hyprgui-bin                                          # GUI for hyprland configuration // might mess your userprefs but convenient // Just disappeared
 # power-profiles-daemon                                # for managing power profiles from waybar
 mission-center                                         # Monitor your CPU, Memory, Disk, Network and GPU usage
+ufw
+caligula
+rsync
+gvfs-mtp
+openbsd-netcat
 
 # --------------------------------------------------- // Shell
+tree
 
 
 # --------------------------------------------------- // Misc
@@ -48,7 +54,7 @@ lazygit
 ripgrep
 bottom
 gdu
-
+nnn
 kate
 
 gnome-characters                                     # emojies
@@ -62,6 +68,7 @@ bat|zsh                                                  # enhanced version of c
 eza|zsh                                                  # file lister for zsh
 duf|zsh                                                  # prettier version of df for zsh
 bat-extras                                             # extra tools for bat
+fd
 
 # --------------------------------------------------- // fish
 bat|fish                                                 # enhanced version of cat
@@ -99,6 +106,9 @@ docker
 docker-compose
 postgresql
 git-filter-repo 
+lazydocker
+lazygit
+
 
 
 # --------------------------------------------------- // python
