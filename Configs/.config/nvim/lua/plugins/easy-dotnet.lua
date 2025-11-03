@@ -8,22 +8,21 @@ return {
     local function get_secret_path(secret_guid)
       local path = ""
       local home_dir = vim.fn.expand "~"
-      if require("easy-dotnet.extensions").isWindows() then
-        local secret_path = home_dir
-          .. "\\AppData\\Roaming\\Microsoft\\UserSecrets\\"
-          .. secret_guid
-          .. "\\secrets.json"
-        path = secret_path
-      else
-        local secret_path = home_dir .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"
-        path = secret_path
-      end
+      local secret_path = home_dir .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"
+      path = secret_path
       return path
     end
 
     local dotnet = require "easy-dotnet"
     -- Options are not required
     dotnet.setup {
+      lsp = {
+        enabled = true,
+        roslynator_enabled = true,
+        analyzer_assemblies = {},
+        config = {},
+      },
+
       --Optional function to return the path for the dotnet sdk (e.g C:/ProgramFiles/dotnet/sdk/8.0.0)
       -- easy-dotnet will resolve the path automatically if this argument is omitted, for a performance improvement you can add a function that returns a hardcoded string
       -- You should define this function to return a hardcoded path for a performance improvement 🚀
@@ -84,7 +83,6 @@ return {
           watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
         }
         local command = commands[action]()
-        if require("easy-dotnet.extensions").isWindows() == true then command = command .. "\r" end
         vim.cmd "vsplit"
         vim.cmd("term " .. command)
       end,
@@ -123,6 +121,7 @@ return {
         end,
       },
       debugger = {
+        bin_path = "/home/amirreza/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
         mappings = {
           open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
         },
@@ -136,4 +135,23 @@ return {
     -- Example command
     vim.api.nvim_create_user_command("Secrets", function() dotnet.secrets() end, {})
   end,
+  specs = {
+    {
+      "Saghen/blink.cmp",
+      opts = {
+        sources = {
+          default = { "easy-dotnet" },
+          providers = {
+            ["easy-dotnet"] = {
+              name = "easy-dotnet",
+              enabled = true,
+              module = "easy-dotnet.completion.blink",
+              score_offset = 10000,
+              async = true,
+            },
+          },
+        },
+      },
+    },
+  },
 }
