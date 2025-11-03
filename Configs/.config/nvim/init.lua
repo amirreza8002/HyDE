@@ -17,3 +17,6 @@ end
 
 require "lazy_setup"
 require "polish"
+
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
