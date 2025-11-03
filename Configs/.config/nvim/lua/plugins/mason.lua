@@ -11,19 +11,17 @@ return {
       ensure_installed = {
         -- install language servers
         "lua-language-server",
+        "python-lsp-server",
 
         -- install formatters
         "stylua",
-
+        "csharpier",
+        --
         -- install debuggers
         "debugpy",
 
         -- install any other package
-        "python-lsp-server",
         "ruff",
-        "csharp-language-server",
-        "gopls",
-        -- "tree-sitter-cli",
       },
     },
   },
