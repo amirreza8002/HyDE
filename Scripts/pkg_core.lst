@@ -66,10 +66,11 @@ qt5-wayland                                            # wayland support in qt5
 qt6-wayland                                            # wayland support in qt6
 
 # --------------------------------------------------- // Applications
-firefox                                                # browser
+# firefox                                                # browser
+waterfox-bin
 qutebrowser
 kitty                                                  # terminal
-alacritty                                              # terminal
+# alacritty                                              # terminal
 tmux
 bat-extras                                             # extra tools for bat
 

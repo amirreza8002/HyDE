@@ -56,8 +56,9 @@ bottom
 gdu
 nnn
 kate
-
+w3m                                                  # terminal based browser
 gnome-characters                                     # emojies
+
 # --------------------------------------------------- // Shell
 # --------------------------------------------------- // zsh
 # oh-my-zsh-git|zsh                                      # Optional plugin manager for zsh
@@ -67,7 +68,7 @@ gnome-characters                                     # emojies
 bat|zsh                                                  # enhanced version of cat
 eza|zsh                                                  # file lister for zsh
 duf|zsh                                                  # prettier version of df for zsh
-bat-extras                                             # extra tools for bat
+bat-extras                                               # extra tools for bat
 fd
 
 # --------------------------------------------------- // fish
@@ -92,7 +93,6 @@ swayosd-git                                             #A GTK based on screen d
 # --------------------------------------------------- // social
 # discord
 telegram-desktop
-webcord
 
 
 
@@ -101,7 +101,6 @@ clang
 gcc
 pyenv
 nvm
-gitui
 docker
 docker-compose
 postgresql
@@ -118,4 +117,5 @@ zlib
 xz
 tk
 uv
-python-lsp-server                                       # lsp server for python (installing for kate)
+ty
+ruff
