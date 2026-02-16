@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+
+cli_mode=false
+if [[ -n "$1" ]]; then
+  cli_mode=true
+fi
+
+word=${1:-$(xclip -o -selection primary 2>/dev/null || wl-paste -p 2>/dev/null)}
+
+# Check for empty word or special characters
+[[ -z "$word" || "$word" =~ [\/] ]] && notify-send -h string:bgcolor:#bf616a -t 3000 "Invalid input." && exit 0
+
+query=$(curl -s --connect-timeout 5 --max-time 10 "https://api.dictionaryapi.dev/api/v2/entries/en_US/$word")
+
+# Check for connection error (curl exit status stored in $?)
+if [[ $? -ne 0 ]]; then
+  if $cli_mode; then
+    echo "Connection error."
+  else
+    notify-send -h string:bgcolor:#bf616a -t 3000 "Connection error."
+  fi
+  exit 1
+fi
+
+# Check for invalid word response
+if [[ "$query" == *"No Definitions Found"* ]]; then
+    if $cli_mode; then
+        echo "Invalid word."
+    else
+        notify-send -h string:bgcolor:#bf616a -t 3000 "Invalid word."
+    fi
+    exit 0
+fi
+
+# Show only first 3 definitions
+def=$(echo "$query" | jq -r '[.[].meanings[] | {pos: .partOfSpeech, def: .definitions[].definition}] | .[:3].[] | "\n\(.pos). \(.def)"')
+
+# Requires a notification daemon to be installed
+if $cli_mode; then
+  echo "$word"
+  echo "---------------"
+  echo "$def"
+else
+  notify-send -t 60000 "$word -" "$def"
+fi

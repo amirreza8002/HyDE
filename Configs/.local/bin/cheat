@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+curl cheat.sh/$1 | bat

@@ -1,0 +1,7 @@
+#! /bin/zsh
+
+filename="/home/amirreza/todo.txt"
+if [ -e "$filename" ]; then
+  content=$(cat "$filename")
+  notify-send -t 60000 "$content"
+fi
