@@ -44,8 +44,9 @@ okular
 # --------------------------------------------------- // Music
 cava                                                   # audio visualizer
 rmpc
-spotify                                                # proprietary music streaming service
-spicetify-cli                                          # cli to customize spotify client
+mdp-mpris
+# spotify                                                # proprietary music streaming service
+# spicetify-cli                                          # cli to customize spotify client
 
 # --------------------------------------------------- // Apps
 neovim                                               # vim based text editor
@@ -54,10 +55,16 @@ lazygit
 ripgrep
 bottom
 gdu
-nnn
 kate
+yazi                                                 # tui file manager
 w3m                                                  # terminal based browser
 gnome-characters                                     # emojies
+bat-extras                                           # extra tools for bat
+fd                                                   # find, but easy to use
+poppler                                              # pdf rendering
+resvg                                                # svg rendering
+imagemagic                                           # view/manipulate images
+zoxide
 
 # --------------------------------------------------- // Shell
 # --------------------------------------------------- // zsh
@@ -68,8 +75,6 @@ gnome-characters                                     # emojies
 bat|zsh                                                  # enhanced version of cat
 eza|zsh                                                  # file lister for zsh
 duf|zsh                                                  # prettier version of df for zsh
-bat-extras                                               # extra tools for bat
-fd
 
 # --------------------------------------------------- // fish
 bat|fish                                                 # enhanced version of cat

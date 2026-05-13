@@ -27,5 +27,25 @@ if [[ ${HYDE_ZSH_NO_PLUGINS} != "1" ]]; then
         "sudo"
         direnv
         dotnet
+        vi-mode
     )
 fi
+
+function y() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+	command yazi "$@" --cwd-file="$tmp"
+	IFS= read -r -d '' cwd < "$tmp"
+	[ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+	command rm -f -- "$tmp"
+}
+
+VI_MODE_SET_CURSOR=true
+autoload -U select-quoted
+zle -N select-quoted
+for m in visual viopp; do
+    for c in {a,i}{\',\",\`}; do
+        bindkey -M $m $c select-quoted
+    done
+done
+
+eval "$(zoxide init zsh)"
