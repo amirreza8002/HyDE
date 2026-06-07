@@ -3,39 +3,72 @@ return {
   "GustavEikaas/easy-dotnet.nvim",
   -- 'nvim-telescope/telescope.nvim' or 'ibhagwan/fzf-lua' or 'folke/snacks.nvim'
   -- are highly recommended for a better experience
-  dependencies = { "nvim-lua/plenary.nvim", "folke/snacks.nvim" },
+  dependencies = { "nvim-lua/plenary.nvim", "mfussenegger/nvim-dap", "folke/snacks.nvim" },
   config = function()
-    local function get_secret_path(secret_guid)
-      local path = ""
-      local home_dir = vim.fn.expand "~"
-      local secret_path = home_dir .. "/.microsoft/usersecrets/" .. secret_guid .. "/secrets.json"
-      path = secret_path
-      return path
-    end
+    vim.keymap.set("n", "<leader>la", vim.lsp.buf.code_action, { desc = "lsp actions" })
+    vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { desc = "go to implementation" })
+    vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "go to definition" })
+    vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "go to declaration" })
+    vim.keymap.set("n", "<leader>ra", vim.lsp.buf.rename, { desc = "rename" })
 
     local dotnet = require "easy-dotnet"
     -- Options are not required
     dotnet.setup {
-      lsp = {
+      managed_terminal = {
+        auto_hide = false, -- auto hides terminal if exit code is 0
+        mappings = {
+          next_tab = { lhs = "<Tab>", desc = "Next terminal tab" },
+          prev_tab = { lhs = "<S-Tab>", desc = "Previous terminal tab" },
+          new_terminal = { lhs = "+", desc = "New user terminal" },
+          close_terminal = { lhs = "X", desc = "Close current terminal tab" },
+          hide_panel = { lhs = "q", desc = "Hide terminal panel" },
+        },
+      },
+      -- Optional configuration for external terminals (matches nvim-dap structure)
+      external_terminal = nil,
+      projx_lsp = {
         enabled = true,
-        roslynator_enabled = true,
-        analyzer_assemblies = {},
+      },
+      lsp = {
+        enabled = true, -- Enable builtin roslyn lsp
+        set_fold_expr = false,
+        preload_roslyn = true, -- Start loading roslyn before any buffer is opened
+        roslynator_enabled = true, -- Automatically enable roslynator analyzer
+        easy_dotnet_analyzer_enabled = true, -- Enable roslyn analyzer from easy-dotnet-server
+        auto_refresh_codelens = true,
+        suggest_updates = true, -- Periodically suggest roslyn-language-server updates
+        analyzer_assemblies = {}, -- Any additional roslyn analyzers you might use like SonarAnalyzer.CSharp
+        razor = {
+          enabled = true,
+          html = {
+            enabled = true,
+          },
+        },
         config = {},
       },
-
-      --Optional function to return the path for the dotnet sdk (e.g C:/ProgramFiles/dotnet/sdk/8.0.0)
-      -- easy-dotnet will resolve the path automatically if this argument is omitted, for a performance improvement you can add a function that returns a hardcoded string
-      -- You should define this function to return a hardcoded path for a performance improvement 🚀
+      debugger = {
+        -- Path to custom coreclr DAP adapter
+        -- easy-dotnet-server falls back to its own netcoredbg binary if bin_path is nil
+        bin_path = nil,
+        console = "integratedTerminal", -- Controls where the target app runs: "integratedTerminal" (Neovim buffer) or "externalTerminal" (OS window)
+        apply_value_converters = true,
+        auto_register_dap = true,
+        mappings = {
+          open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
+        },
+      },
       ---@type TestRunnerOptions
       test_runner = {
+        auto_start_testrunner = true,
+        hide_legend = false,
+        -- Set to true when using neotest to avoid duplicate signs and conflicting buffer keymaps.
+        neotest_integration = false,
         ---@type "split" | "vsplit" | "float" | "buf"
         viewmode = "float",
         ---@type number|nil
         vsplit_width = nil,
         ---@type string|nil "topleft" | "topright"
         vsplit_pos = nil,
-        enable_buffer_test_execution = true, --Experimental, run tests directly from buffer
-        noBuild = true,
         icons = {
           passed = "",
           skipped = "",
@@ -47,47 +80,32 @@ return {
           project = "󰘐",
           dir = "",
           package = "",
+          class = "",
+          build_failed = "󰒡",
         },
         mappings = {
-          run_test_from_buffer = { lhs = "<leader>drb", desc = "run test from buffer" },
-          filter_failed_tests = { lhs = "<leader>fe", desc = "filter failed tests" },
-          debug_test = { lhs = "<leader>dt", desc = "debug test" },
-          debug_test_from_buffer = { lhs = "<leader>dtb", desc = "run test from buffer" },
+          run_test_from_buffer = { lhs = "<leader>r", desc = "run test from buffer" },
+          run_all_tests_from_buffer = { lhs = "<leader>t", desc = "Run all tests in file" },
+          get_build_errors = { lhs = "<leader>e", desc = "get build errors" },
+          peek_stack_trace_from_buffer = { lhs = "<leader>p", desc = "peek stack trace from buffer" },
+          debug_test_from_buffer = { lhs = "<leader>d", desc = "run test from buffer" },
+          debug_test = { lhs = "<leader>d", desc = "debug test" },
           go_to_file = { lhs = "g", desc = "go to file" },
-          run_all = { lhs = "<leader>dR", desc = "run all tests" },
-          run = { lhs = "<leader>dr", desc = "run test" },
+          run_all = { lhs = "<leader>R", desc = "run all tests" },
+          run = { lhs = "<leader>r", desc = "run test" },
           peek_stacktrace = { lhs = "<leader>p", desc = "peek stacktrace of failed test" },
           expand = { lhs = "o", desc = "expand" },
           expand_node = { lhs = "E", desc = "expand node" },
-          expand_all = { lhs = "-", desc = "expand all" },
           collapse_all = { lhs = "W", desc = "collapse all" },
           close = { lhs = "q", desc = "close testrunner" },
           refresh_testrunner = { lhs = "<C-r>", desc = "refresh testrunner" },
+          cancel = { lhs = "<C-c>", desc = "cancel in-flight operation" },
         },
-        --- Optional table of extra args e.g "--blame crash"
-        additional_args = {},
       },
       new = {
         project = {
           prefix = "sln", -- "sln" | "none"
         },
-      },
-      ---@param action "test" | "restore" | "build" | "run"
-      terminal = function(path, action, args)
-        args = args or ""
-        local commands = {
-          run = function() return string.format("dotnet run --project %s %s", path, args) end,
-          test = function() return string.format("dotnet test %s %s", path, args) end,
-          restore = function() return string.format("dotnet restore %s %s", path, args) end,
-          build = function() return string.format("dotnet build %s %s", path, args) end,
-          watch = function() return string.format("dotnet watch --project %s %s", path, args) end,
-        }
-        local command = commands[action]()
-        vim.cmd "vsplit"
-        vim.cmd("term " .. command)
-      end,
-      secrets = {
-        path = get_secret_path,
       },
       csproj_mappings = true,
       fsproj_mappings = true,
@@ -108,50 +126,33 @@ return {
       -- possible values are "telescope" | "fzf" | "snacks" | "basic"
       -- if no picker is specified, the plugin will determine
       -- the available one automatically with this priority:
-      -- telescope -> fzf -> snacks ->  basic
+      --  snacks -> fzf -> telescope ->  basic
       picker = "snacks",
-      background_scanning = true,
       notifications = {
         --Set this to false if you have configured lualine to avoid double logging
         handler = function(start_event)
           local spinner = require("easy-dotnet.ui-modules.spinner").new()
           spinner:start_spinner(start_event.job.name)
           ---@param finished_event JobEvent
-          return function(finished_event) spinner:stop_spinner(finished_event.result.text, finished_event.result.level) end
+          return function(finished_event) spinner:stop_spinner(finished_event.result.msg, finished_event.result.level) end
         end,
-      },
-      debugger = {
-        bin_path = "/home/amirreza/.local/share/nvim/mason/packages/netcoredbg/netcoredbg",
-        mappings = {
-          open_variable_viewer = { lhs = "T", desc = "open variable viewer" },
-        },
       },
       diagnostics = {
         default_severity = "error",
         setqflist = false,
       },
+      outdated = {
+        mappings = {
+          upgrade = { lhs = "<leader>pu", desc = "upgrade package under cursor" },
+          upgrade_all = { lhs = "<leader>pa", desc = "upgrade all outdated packages" },
+        },
+      },
     }
 
     -- Example command
     vim.api.nvim_create_user_command("Secrets", function() dotnet.secrets() end, {})
+
+    -- Example keybinding
+    vim.keymap.set("n", "<C-p>", function() dotnet.run_project() end)
   end,
-  specs = {
-    {
-      "Saghen/blink.cmp",
-      opts = {
-        sources = {
-          default = { "easy-dotnet" },
-          providers = {
-            ["easy-dotnet"] = {
-              name = "easy-dotnet",
-              enabled = true,
-              module = "easy-dotnet.completion.blink",
-              score_offset = 10000,
-              async = true,
-            },
-          },
-        },
-      },
-    },
-  },
 }
