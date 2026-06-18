@@ -71,6 +71,9 @@ O|${HOME}/.local/share|wallbash|bash imagemagick
 P|${HOME}/.config/Code - OSS/User|settings.json|code
 P|${HOME}/.config/Code/User|settings.json|visual-studio-code-bin
 P|${HOME}/.config/VSCodium/User|settings.json|vscodium
+O|${HOME}/.config/nvim|.neoconf.json .stylua.toml README.md init.lua lazy-lock.json neovim.yml selene.toml|nvim
+O|${HOME}/.config/nvim/lua|polish.lua lazy_setup.lua community.lua|nvim
+O|${HOME}/.config/nvim/lua/plugins|astrocode.lua astrolsp.lua astroui.lua blink.lua easy-dotnet.lua mason.lua none-ls.lua snacks.lua treesitter.lua user.lua uv.lua worktrees.lua|nvim
 
  Bar 
 P|${HOME}/.config/waybar|user-style.css config.jsonc theme.css style.css|waybar
@@ -151,3 +154,20 @@ P|${HOME}/.config/hypr|hypridle.conf|hypridle
 
  Bluelight filter daemon 
 P|${HOME}/.config/hypr|hyprsunset.conf|hyprsunset
+
+ xkb 
+P|${HOME}/.xkb/symbols|us|hyprsunset
+
+ qutebrowser 
+O|${HOME}/.config/qutebrowser|config.py|qutebrowser
+O|${HOME}/.config/qutebrowser/greasemonkey|yt-ads.js|qutebrowser
+O|${HOME}/.config/qutebrowser/userscripts|qute-bitwarden|qutebrowser
+
+ mpd 
+O|${HOME}/.config/mpd|mpd.onf|mpd
+
+ scripts 
+O|${HOME}/.local/bin|aw|w3m
+O|${HOME}/.local/bin|cheat define|curl
+O|${HOME}/.local/bin|todo|cat
+O|${HOME}/.local/bin|wt|git
