@@ -3,7 +3,64 @@ c = c  # noqa: F821 pylint: disable=E0602,C0103
 config = config  # noqa: F821 pylint: disable=E0602,C0103
 # pylint settings included to disable linting errors
 
+import pathlib
+import socket
 import subprocess
+
+config.load_autoconfig()  # load settings done via the gui
+
+
+def is_port_busy(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+        return s.connect_ex(("localhost", port)) == 0
+
+
+if is_port_busy(10808):
+    c.content.proxy = "socks://localhost:10808"
+else:
+    c.content.proxy = "system"
+
+
+def rgba_to_hex(r, g, b, a):
+    """
+    Convert RGBA values to HEX.
+    - r, g, b should be in the range 0–255
+    - a should be a float between 0–1
+
+    Returns a hex string in the form #RRGGBBAA
+    """
+    if not all(0 <= val <= 255 for val in (r, g, b)):
+        raise ValueError("RGB values must be between 0 and 255")
+    if not (0.0 <= a <= 1.0):
+        raise ValueError("Alpha value must be between 0.0 and 1.0")
+
+    alpha_255 = int(round(a * 255))
+    return "#{:02X}{:02X}{:02X}{:02X}".format(r, g, b, alpha_255)
+
+
+file = pathlib.Path().home() / (".cache/hyde/wall.dcol")
+
+
+def read_colors():
+    colors = {}
+    with file.open() as f:
+        for line in f:
+            name, color = line.split("=")
+            if "rgba" in color:
+                code: str = color[color.find("(") + 1 : color.find(")")]
+                rgba: list[str] = code.split(",")
+                r = int(rgba[0])
+                g = int(rgba[1])
+                b = int(rgba[2])
+                a = int(rgba[3][1])
+                colors[name] = rgba_to_hex(r, g, b, a)
+            else:
+                colors[name] = line.split("=")[1].strip('"')[:-2]
+
+    return colors
+
+
+theme_colors = read_colors()
 
 
 def read_kitty():
@@ -51,7 +108,7 @@ c.colors.statusbar.normal.bg = "#00000000"
 c.colors.statusbar.command.bg = "#00000000"
 # c.colors.statusbar.normal.bg = kitty_colors["background"]
 # c.colors.statusbar.command.bg = kitty_colors["background"]
-c.colors.statusbar.command.fg = kitty_colors["foreground"]
+c.colors.statusbar.command.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.statusbar.normal.fg = kitty_colors["color14"]
 c.colors.statusbar.passthrough.fg = kitty_colors["color14"]
 c.colors.statusbar.url.fg = kitty_colors["color13"]
@@ -65,12 +122,12 @@ c.colors.tabs.bar.bg = "#00000000"
 # c.colors.tabs.odd.bg = kitty_colors["background"]
 c.colors.tabs.even.fg = kitty_colors["color0"]
 c.colors.tabs.odd.fg = kitty_colors["color0"]
-c.colors.tabs.selected.even.bg = kitty_colors["foreground"]
+c.colors.tabs.selected.even.bg = theme_colors["dcol_txt1_rgba"]
 c.colors.tabs.selected.odd.bg = kitty_colors["foreground"]
 c.colors.tabs.selected.even.fg = kitty_colors["background"]
 c.colors.tabs.selected.odd.fg = kitty_colors["background"]
 c.colors.hints.bg = kitty_colors["background"]
-c.colors.hints.fg = kitty_colors["foreground"]
+c.colors.hints.fg = theme_colors["dcol_txt1_rgba"]
 c.tabs.show = "multiple"
 
 c.colors.completion.item.selected.match.fg = kitty_colors["color6"]
@@ -80,28 +137,28 @@ c.colors.tabs.indicator.start = kitty_colors["color10"]
 c.colors.tabs.indicator.stop = kitty_colors["color8"]
 c.colors.completion.odd.bg = kitty_colors["background"]
 c.colors.completion.even.bg = kitty_colors["background"]
-c.colors.completion.fg = kitty_colors["foreground"]
+c.colors.completion.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.completion.category.bg = kitty_colors["background"]
-c.colors.completion.category.fg = kitty_colors["foreground"]
+c.colors.completion.category.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.completion.item.selected.bg = kitty_colors["background"]
-c.colors.completion.item.selected.fg = kitty_colors["foreground"]
+c.colors.completion.item.selected.fg = theme_colors["dcol_txt1_rgba"]
 
 c.colors.messages.info.bg = kitty_colors["background"]
-c.colors.messages.info.fg = kitty_colors["foreground"]
+c.colors.messages.info.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.messages.error.bg = kitty_colors["background"]
-c.colors.messages.error.fg = kitty_colors["foreground"]
+c.colors.messages.error.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.downloads.error.bg = kitty_colors["background"]
-c.colors.downloads.error.fg = kitty_colors["foreground"]
+c.colors.downloads.error.fg = theme_colors["dcol_txt1_rgba"]
 
 c.colors.downloads.bar.bg = kitty_colors["background"]
 c.colors.downloads.start.bg = kitty_colors["color10"]
-c.colors.downloads.start.fg = kitty_colors["foreground"]
+c.colors.downloads.start.fg = theme_colors["dcol_txt1_rgba"]
 c.colors.downloads.stop.bg = kitty_colors["color8"]
-c.colors.downloads.stop.fg = kitty_colors["foreground"]
+c.colors.downloads.stop.fg = theme_colors["dcol_txt1_rgba"]
 
 c.colors.tooltip.bg = kitty_colors["background"]
 c.colors.webpage.bg = kitty_colors["background"]
-c.hints.border = kitty_colors["foreground"]
+c.hints.border = theme_colors["dcol_txt1_rgba"]
 
 
 # c.colors.statusbar.normal.bg = "#24283b"
@@ -165,6 +222,7 @@ c.url.searchengines = {
     "!apkg": "https://archlinux.org/packages/?sort=&q={}&maintainer=&flagged=",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
     "!yt": "https://www.youtube.com/results?search_query={}",
+    "!goo": "https://www.google.com/search?q={}",
 }
 
 c.completion.open_categories = [
@@ -175,9 +233,8 @@ c.completion.open_categories = [
     "filesystem",
 ]
 
-config.load_autoconfig()  # load settings done via the gui
 
-config.bind("gp", "spawn qute-bitwarden")
+config.bind("gp", "spawn --userscript qute-bitwarden")
 
 c.colors.webpage.darkmode.enabled = True
 c.colors.webpage.darkmode.algorithm = "lightness-cielab"
@@ -200,7 +257,6 @@ c.content.blocking.enabled = True
 # uncomment this if you install python-adblock
 c.content.blocking.method = "adblock"
 c.content.blocking.adblock.lists = [
-    "https://github.com/ewpratten/youtube_ad_blocklist/blob/master/blocklist.txt",
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/legacy.txt",
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters.txt",
     "https://github.com/uBlockOrigin/uAssets/raw/master/filters/filters-2020.txt",
