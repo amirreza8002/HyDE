@@ -69,11 +69,11 @@ _F = { description = "[Utilities] Word Definition" }
 hl.bind("SUPER + ALT + D", hl.dsp.exec_cmd("define"))
 
 local kp = {
-	[1] = { "KP_Add" },
+	[1] = { "plus" },
 	[2] = { "bracketleft" },
 	[3] = { "braceleft" },
 	[4] = { "parenleft" },
-	[5] = { "KP_Equal" },
+	[5] = { "equal" },
 	[6] = { "dollar" },
 	[7] = { "ampersand" },
 	[8] = { "parenright" },
@@ -81,6 +81,7 @@ local kp = {
 	[10] = { "bracketright" },
 }
 for i = 1, 10 do
+	hl.unbind("SUPER + " .. i)
 	for _, key in ipairs(kp[i]) do
 		hl.bind(
 			"SUPER + " .. key,
@@ -91,6 +92,7 @@ for i = 1, 10 do
 end
 -- move window to workspace
 for i = 1, 10 do
+	hl.unbind("SUPER + SHIFT + " .. i)
 	for _, key in ipairs(kp[i]) do
 		hl.bind(
 			"SUPER + SHIFT + " .. key,
@@ -101,9 +103,15 @@ for i = 1, 10 do
 end
 -- move window to workspace silent
 for i = 1, 10 do
+	hl.unbind("SUPER + ALT + " .. i)
 	for _, key in ipairs(kp[i]) do
 		hl.bind("SUPER + ALT + " .. key, hl.dsp.window.move({ workspace = tostring(i), follow = false }), {
 			description = "[Workspaces|Move window to workspace (Don't follow)] move focused window to workspace " .. i,
 		})
 	end
 end
+
+_F = { description = "[Window Management|Change focus] focus left" }
+hl.bind("SUPER + SHIFT + H", hl.dsp.focus({ direction = "left" }), _F)
+_F = { description = "[Window Management|Change focus] focus right" }
+hl.bind("SUPER + SHIFT + L", hl.dsp.focus({ direction = "right" }), _F)
