@@ -108,10 +108,10 @@ return {
         },
       },
       csproj_mappings = true,
-      fsproj_mappings = true,
+      fsproj_mappings = false,
       auto_bootstrap_namespace = {
         --block_scoped, file_scoped
-        type = "block_scoped",
+        type = "file_scoped",
         enabled = true,
         use_clipboard_json = {
           behavior = "prompt", --'auto' | 'prompt' | 'never',
