@@ -79,3 +79,4 @@ alias dj-shp="python manage.py shell_plus"
 
 
 alias man="batman"
+alias :q="exit"
