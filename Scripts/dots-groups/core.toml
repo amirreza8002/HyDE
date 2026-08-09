@@ -22,6 +22,11 @@
         "../dots/dunst.toml",
         "../dots/wlogout.toml",
         "../dots/archives.toml",
+        "../dots/mpd.toml",
+        "../dots/nvim.toml",
+        "../dots/qutebrowser.toml",
+        "../dots/scripts.toml",
+        "../dots/xkb.toml",
     ]
 
 # Loads an array of package manager commands

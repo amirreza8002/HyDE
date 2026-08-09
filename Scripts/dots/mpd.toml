@@ -1,0 +1,14 @@
+[mpd]
+description = "mdp config"
+pre_command = "echo 'sync mpd config'"
+
+[[mpd.dependency]]
+pacman = ["mpd"]
+
+[[mpd.files]]
+action = "sync"
+source_root = "Configs/.config/mpd"
+target_root = "${HOME}/.config/mpd"
+paths = ["mpd.conf"]
+
+

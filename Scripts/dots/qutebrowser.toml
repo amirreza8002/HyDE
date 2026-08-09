@@ -1,0 +1,13 @@
+[qutebrowser]
+description = "the browser everyone should use"
+pre_command = "echo 'sync qutebrowser config'"
+
+[[qutebrowser.dependency]]
+pacman = ["qutebrowser"]
+
+[[qutebrowser.files]]
+action = "sync"
+source_root = "Configs/.config/qutebrowser"
+target_root = "${HOME}/.config/qutebrowser"
+paths = ["config.py", "greasemonkey", "userscripts"]
+

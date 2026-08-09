@@ -1,0 +1,18 @@
+[nvim]
+description = "i use neovim btw"
+pre_command = "echo 'Preserve nvim config'"
+
+[[nvim.dependency]]
+pacman = ["neovim"]
+
+[[nvim.files]]
+action = "sync"
+source_root = "Configs/.config/nvim"
+target_root = "${HOME}/.config/nvim"
+paths = [".neoconf.json", ".stylua.toml", "README.md", "init.lua", "lazy-lock.json", "neovim.yml", "selene.toml"]
+
+[[nvim.files]]
+action = "sync"
+source_root = "Configs/.config/nvim/lua"
+target_root = "${HOME}/.config/nvim/lua"
+paths = ["community.lua", "lazy_setup.lua", "polish.lua", "plugins"]

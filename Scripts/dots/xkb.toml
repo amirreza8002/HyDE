@@ -1,0 +1,9 @@
+[xkb]
+description = "sync xkb configs"
+
+[[xkb.files]]
+    action      = "sync"
+    paths       = "us"
+    source_root = "Configs/.xkb/symbols"
+    target_root = "${HOME}/.xkb/symbols/"
+

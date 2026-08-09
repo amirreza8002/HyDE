@@ -1,0 +1,15 @@
+[scripts]
+description = "my scripts"
+pre_command = "echo 'personal scripts'"
+post_command = "chmod +x ${HOME}/.local/bin/{aw,cheat,define,todo,wt}"
+
+[[scripts.dependency]]
+pacman = ["w3m", "curl", "coreutils", "git"]
+
+[[scripts.files]]
+action = "sync"
+source_root = "Configs/.local/bin"
+target_root = "${HOME}/.local/bin"
+paths = ["aw", "cheat", "define", "todo", "wt"]
+
+
