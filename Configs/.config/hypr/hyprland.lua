@@ -64,7 +64,7 @@ hl.bind("SUPER + F", hl.dsp.exec_cmd("waterfox"))
 _F = { description = "[Launcher|Apps] Telegram" }
 hl.bind("SUPER + H", hl.dsp.exec_cmd("Telegram"))
 _F = { description = "[Utilities] System Update" }
-hl.bind("SUPER + U", hl.dsp.exec_cmd("hyde-shell app system.update.sh up"))
+hl.bind("SUPER + U", hl.dsp.exec_cmd("hyde-shell system.update up"))
 _F = { description = "[Utilities] Word Definition" }
 hl.bind("SUPER + ALT + D", hl.dsp.exec_cmd("define"))
 
