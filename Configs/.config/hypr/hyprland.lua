@@ -45,7 +45,7 @@ end
 hl.config({
 	input = {
 		kb_layout = "us,ir",
-		kb_options = "caps:swapescape",
+		kb_options = "caps:escape_shifted_capslock",
 	},
 })
 
@@ -62,7 +62,7 @@ hl.bind("SUPER + C", hl.dsp.exec_cmd("nvim"))
 _F = { description = "[Launcher|Apps] Waterfox" }
 hl.bind("SUPER + F", hl.dsp.exec_cmd("waterfox"))
 _F = { description = "[Launcher|Apps] Telegram" }
-hl.bind("SUPER + H", hl.dsp.exec_cmd("Telegram"))
+hl.bind("SUPER + G", hl.dsp.exec_cmd("Telegram"))
 _F = { description = "[Utilities] System Update" }
 hl.bind("SUPER + U", hl.dsp.exec_cmd("hyde-shell system.update up"))
 _F = { description = "[Utilities] Word Definition" }
@@ -112,6 +112,7 @@ for i = 1, 10 do
 end
 
 _F = { description = "[Window Management|Change focus] focus left" }
-hl.bind("SUPER + SHIFT + H", hl.dsp.focus({ direction = "left" }), _F)
+hl.bind("SUPER + H", hl.dsp.focus({ direction = "left" }), _F)
+hl.unbind("SUPER + L")
 _F = { description = "[Window Management|Change focus] focus right" }
-hl.bind("SUPER + SHIFT + L", hl.dsp.focus({ direction = "right" }), _F)
+hl.bind("SUPER + L", hl.dsp.focus({ direction = "right" }), _F)
