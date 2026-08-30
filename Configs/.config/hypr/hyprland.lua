@@ -68,6 +68,13 @@ hl.bind("SUPER + U", hl.dsp.exec_cmd("hyde-shell system.update up"))
 _F = { description = "[Utilities] Word Definition" }
 hl.bind("SUPER + ALT + D", hl.dsp.exec_cmd("define"))
 
+_F = { description = "[Launcher|Rofi menus] glyph picker" }
+hl.unbind("SUPER + Q")
+hl.bind("SUPER + Q", hl.dsp.exec_cmd(hyde.sh.menu.glyph()), _F)
+_F = { description = "[Window Management] close focused window" }
+hl.unbind("SUPER + period")
+hl.bind("SUPER + period", hl.dsp.window.close(), _F)
+
 local kp = {
 	[1] = { "plus" },
 	[2] = { "bracketleft" },
